@@ -15,4 +15,6 @@ class RecipeViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var ingredientesNumberLabel: UILabel!
 
+    static let cellID = "RecipeViewCell"
+
 }

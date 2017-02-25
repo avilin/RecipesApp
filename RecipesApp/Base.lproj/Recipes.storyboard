@@ -11,24 +11,24 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Recipes View Controller-->
+        <!--Recipes-->
         <scene sceneID="170-d7-gmM">
             <objects>
                 <tableViewController id="FTT-nU-hvu" customClass="RecipesViewController" customModule="RecipesApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="COR-hg-ggE">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="COR-hg-ggE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipeViewCell" rowHeight="100" id="xoJ-U8-OkT" customClass="RecipeViewCell" customModule="RecipesApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RecipeViewCell" id="xoJ-U8-OkT" customClass="RecipeViewCell" customModule="RecipesApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xoJ-U8-OkT" id="3iK-ex-TNn">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sbm-l5-tjH">
-                                            <rect key="frame" x="8" y="8" width="83" height="83"/>
+                                            <rect key="frame" x="8" y="8" width="83.5" height="83.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="sbm-l5-tjH" secondAttribute="height" multiplier="1:1" id="k5t-al-y3p"/>
                                             </constraints>
@@ -39,22 +39,22 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="phh-Tp-BG2">
-                                            <rect key="frame" x="99" y="8" width="227" height="84"/>
+                                            <rect key="frame" x="99.5" y="8" width="226.5" height="83.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Knm-nV-cNw">
-                                                    <rect key="frame" x="0.0" y="0.0" width="227" height="22.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="226.5" height="22.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uwv-qH-qlO">
-                                                    <rect key="frame" x="0.0" y="30.5" width="227" height="23"/>
+                                                    <rect key="frame" x="0.0" y="30.5" width="226.5" height="22.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrC-ki-x2I">
-                                                    <rect key="frame" x="0.0" y="61.5" width="227" height="22.5"/>
+                                                    <rect key="frame" x="0.0" y="61" width="226.5" height="22.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -73,10 +73,10 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="ingredientesNumberLabel" destination="vrC-ki-x2I" id="9g2-0w-PnC"/>
-                                    <outlet property="nameLabel" destination="Knm-nV-cNw" id="1PM-YY-xwy"/>
-                                    <outlet property="thumbnailImageView" destination="sbm-l5-tjH" id="oyY-bY-72e"/>
-                                    <outlet property="timeLabel" destination="Uwv-qH-qlO" id="eq7-I1-J7k"/>
+                                    <outlet property="ingredientesNumberLabel" destination="vrC-ki-x2I" id="bfX-zL-aAu"/>
+                                    <outlet property="nameLabel" destination="Knm-nV-cNw" id="57U-Vn-z84"/>
+                                    <outlet property="thumbnailImageView" destination="sbm-l5-tjH" id="PpJ-OJ-SNR"/>
+                                    <outlet property="timeLabel" destination="Uwv-qH-qlO" id="GpC-n9-cD0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -85,7 +85,7 @@
                             <outlet property="delegate" destination="FTT-nU-hvu" id="x76-R2-L8B"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="1DW-0g-K8X"/>
+                    <navigationItem key="navigationItem" title="Recipes" id="1DW-0g-K8X"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEg-jC-ILw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

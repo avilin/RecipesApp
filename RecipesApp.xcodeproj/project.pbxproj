@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		7C19964E1E59BA8E00F05686 /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C19964D1E59BA8E00F05686 /* RecipesViewController.swift */; };
 		7C1996501E59F49E00F05686 /* RecipeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C19964F1E59F49E00F05686 /* RecipeViewCell.swift */; };
+		7C1996521E5A04A600F05686 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1996511E5A04A600F05686 /* Recipe.swift */; };
+		7C1996541E5A05ED00F05686 /* RecipeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1996531E5A05ED00F05686 /* RecipeDAO.swift */; };
+		7C1996561E5A062200F05686 /* RecipeMockDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1996551E5A062200F05686 /* RecipeMockDAO.swift */; };
+		7C1996581E5A07EC00F05686 /* RecipesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1996571E5A07EC00F05686 /* RecipesPresenter.swift */; };
+		7C19965C1E5A1F9400F05686 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C19965B1E5A1F9400F05686 /* RecipesView.swift */; };
+		7C1F3CB81E5E3EBD00786F55 /* RecipeCellViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1F3CB71E5E3EBD00786F55 /* RecipeCellViewData.swift */; };
 		7C237AAC1E585981008D70D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C237AAB1E585981008D70D7 /* AppDelegate.swift */; };
 		7C237AB11E585981008D70D7 /* Recipes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C237AAF1E585981008D70D7 /* Recipes.storyboard */; };
 		7C237AB31E585981008D70D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C237AB21E585981008D70D7 /* Assets.xcassets */; };
@@ -19,6 +25,12 @@
 /* Begin PBXFileReference section */
 		7C19964D1E59BA8E00F05686 /* RecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
 		7C19964F1E59F49E00F05686 /* RecipeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeViewCell.swift; sourceTree = "<group>"; };
+		7C1996511E5A04A600F05686 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		7C1996531E5A05ED00F05686 /* RecipeDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDAO.swift; sourceTree = "<group>"; };
+		7C1996551E5A062200F05686 /* RecipeMockDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeMockDAO.swift; sourceTree = "<group>"; };
+		7C1996571E5A07EC00F05686 /* RecipesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesPresenter.swift; sourceTree = "<group>"; };
+		7C19965B1E5A1F9400F05686 /* RecipesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
+		7C1F3CB71E5E3EBD00786F55 /* RecipeCellViewData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCellViewData.swift; sourceTree = "<group>"; };
 		7C237AA81E585981008D70D7 /* RecipesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C237AAB1E585981008D70D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C237AB01E585981008D70D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Recipes.storyboard; sourceTree = "<group>"; };
@@ -53,11 +65,41 @@
 		7C19964C1E59BA0200F05686 /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
-				7C237AAF1E585981008D70D7 /* Recipes.storyboard */,
-				7C19964D1E59BA8E00F05686 /* RecipesViewController.swift */,
-				7C19964F1E59F49E00F05686 /* RecipeViewCell.swift */,
+				7C19965E1E5A200D00F05686 /* Views */,
+				7C19965F1E5A201B00F05686 /* Presenters */,
+				7C19965D1E5A1FCF00F05686 /* Models */,
 			);
 			path = Recipes;
+			sourceTree = "<group>";
+		};
+		7C19965D1E5A1FCF00F05686 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7C1996531E5A05ED00F05686 /* RecipeDAO.swift */,
+				7C1996551E5A062200F05686 /* RecipeMockDAO.swift */,
+				7C1996511E5A04A600F05686 /* Recipe.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7C19965E1E5A200D00F05686 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7C237AAF1E585981008D70D7 /* Recipes.storyboard */,
+				7C19965B1E5A1F9400F05686 /* RecipesView.swift */,
+				7C19964D1E59BA8E00F05686 /* RecipesViewController.swift */,
+				7C19964F1E59F49E00F05686 /* RecipeViewCell.swift */,
+				7C1F3CB71E5E3EBD00786F55 /* RecipeCellViewData.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7C19965F1E5A201B00F05686 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				7C1996571E5A07EC00F05686 /* RecipesPresenter.swift */,
+			);
+			path = Presenters;
 			sourceTree = "<group>";
 		};
 		7C237A9F1E585981008D70D7 = {
@@ -237,8 +279,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C19964E1E59BA8E00F05686 /* RecipesViewController.swift in Sources */,
+				7C1996541E5A05ED00F05686 /* RecipeDAO.swift in Sources */,
+				7C1996561E5A062200F05686 /* RecipeMockDAO.swift in Sources */,
 				7C1996501E59F49E00F05686 /* RecipeViewCell.swift in Sources */,
+				7C1996581E5A07EC00F05686 /* RecipesPresenter.swift in Sources */,
 				7C237AAC1E585981008D70D7 /* AppDelegate.swift in Sources */,
+				7C1996521E5A04A600F05686 /* Recipe.swift in Sources */,
+				7C19965C1E5A1F9400F05686 /* RecipesView.swift in Sources */,
+				7C1F3CB81E5E3EBD00786F55 /* RecipeCellViewData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,7 +299,7 @@
 				7C237AB01E585981008D70D7 /* Base */,
 			);
 			name = Recipes.storyboard;
-			path = ..;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		7C237AB41E585981008D70D7 /* LaunchScreen.storyboard */ = {
