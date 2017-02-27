@@ -32,7 +32,8 @@ class RecipesPresenter {
             }
 
             let recipeCellViewData = RecipeCellViewData(recipeID: recipe.recipeID, name: recipe.name,
-                time: "\(recipe.time) minutes", ingredients: "\(recipe.ingredients.count) ingredients",
+                time: "%d minutes".localized(arguments: recipe.time),
+                ingredients: "%d ingredients".localized(arguments: recipe.ingredients.count),
                 image: recipeCellViewDataImage)
             return recipeCellViewData
         })
