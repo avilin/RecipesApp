@@ -21,6 +21,13 @@ class RecipesViewController: UITableViewController {
         recipesPresenter?.loadRecipes()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let recipeDetailViewController = segue.destination as? RecipeDetailViewController,
+            let indexPath = tableView.indexPathForSelectedRow {
+            recipeDetailViewController.recipe = recipesPresenter?.recipe(at: indexPath.row)
+        }
+    }
+
 }
 
 // MARK: - RecipesView

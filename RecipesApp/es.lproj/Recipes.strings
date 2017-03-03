@@ -2,6 +2,12 @@
 /* Class = "UINavigationItem"; title = "Recipes"; ObjectID = "1DW-0g-K8X"; */
 "1DW-0g-K8X.title" = "Recetas";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "CpU-bd-IMa"; */
+"CpU-bd-IMa.text" = "Label";
+
+/* Class = "UILabel"; text = "Time"; ObjectID = "J2C-xW-YOX"; */
+"J2C-xW-YOX.text" = "Tiempo";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "Knm-nV-cNw"; */
 "Knm-nV-cNw.text" = "Label";
 

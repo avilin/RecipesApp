@@ -1,21 +1,21 @@
 //
-//  Recipe.swift
+//  RecipeViewData.swift
 //  RecipesApp
 //
-//  Created by Andrés Vicente Linares on 19/2/17.
+//  Created by Andrés Vicente Linares on 3/3/17.
 //  Copyright © 2017 Andrés Vicente Linares. All rights reserved.
 //
 
 import UIKit
 
-class Recipe {
+class RecipeViewData: NSObject {
 
     var name: String
-    var time: Int
+    var time: String
     var ingredients: [String]
     var image: UIImage?
 
-    init(name: String, time: Int, ingredients: [String], image: UIImage?) {
+    init(name: String, time: String, ingredients: [String], image: UIImage) {
         self.name = name
         self.time = time
         self.ingredients = ingredients

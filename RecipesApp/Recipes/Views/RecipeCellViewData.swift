@@ -10,14 +10,12 @@ import UIKit
 
 class RecipeCellViewData {
 
-    var recipeID: Int
     var name: String
     var time: String
     var ingredients: String
     var image: UIImage
 
-    init(recipeID: Int, name: String, time: String, ingredients: String, image: UIImage) {
-        self.recipeID = recipeID
+    init(name: String, time: String, ingredients: String, image: UIImage) {
         self.name = name
         self.time = time
         self.ingredients = ingredients

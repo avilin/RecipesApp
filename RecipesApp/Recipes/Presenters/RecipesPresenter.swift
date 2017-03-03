@@ -13,6 +13,8 @@ class RecipesPresenter {
     private let recipeDAO: RecipeDAO
     weak private var recipesView: RecipesView?
 
+    var recipes: [Recipe] = []
+
     init(recipeDAO: RecipeDAO) {
         self.recipeDAO = recipeDAO
     }
@@ -22,23 +24,41 @@ class RecipesPresenter {
     }
 
     func loadRecipes() {
-        let recipes = recipeDAO.findAll()
+        recipes = recipeDAO.findAll()
         let recipeCellViewDataList = recipes.map({ (recipe) -> RecipeCellViewData in
-            var recipeCellViewDataImage: UIImage
-            if let image = recipe.image {
-                recipeCellViewDataImage = image
-            } else {
-                recipeCellViewDataImage = #imageLiteral(resourceName: "placeholder_image")
-            }
-
-            let recipeCellViewData = RecipeCellViewData(recipeID: recipe.recipeID, name: recipe.name,
-                time: "%d minutes".localized(arguments: recipe.time),
-                ingredients: "%d ingredients".localized(arguments: recipe.ingredients.count),
-                image: recipeCellViewDataImage)
-            return recipeCellViewData
+            return recipeCellViewDataFrom(recipe: recipe)
         })
 
         recipesView?.setRecipes(recipes: recipeCellViewDataList)
+    }
+
+    private func recipeCellViewDataFrom(recipe: Recipe) -> RecipeCellViewData {
+        var recipeCellViewDataImage: UIImage
+        if let image = recipe.image {
+            recipeCellViewDataImage = image
+        } else {
+            recipeCellViewDataImage = #imageLiteral(resourceName: "placeholder_image")
+        }
+
+        let recipeCellViewData = RecipeCellViewData(name: recipe.name,
+            time: "%d minutes".localized(arguments: recipe.time),
+            ingredients: "%d ingredients".localized(arguments: recipe.ingredients.count),
+            image: recipeCellViewDataImage)
+        return recipeCellViewData
+    }
+
+    func recipe(at index: Int) -> RecipeViewData {
+        let recipe = recipes[index]
+
+        var recipeViewDataImage: UIImage
+        if let image = recipe.image {
+            recipeViewDataImage = image
+        } else {
+            recipeViewDataImage = #imageLiteral(resourceName: "placeholder_image")
+        }
+
+        return RecipeViewData(name: recipe.name, time: "%d minutes".localized(arguments: recipe.time),
+            ingredients: recipe.ingredients, image: recipeViewDataImage)
     }
 
 }
