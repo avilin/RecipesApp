@@ -10,12 +10,14 @@ import UIKit
 
 class RecipesPresenter {
 
+    private let recipeWireframe: RecipeWireframe
     private let recipeDAO: RecipeDAO
     weak private var recipesView: RecipesView?
 
     var recipes: [Recipe] = []
 
-    init(recipeDAO: RecipeDAO) {
+    init(recipeWireframe: RecipeWireframe, recipeDAO: RecipeDAO) {
+        self.recipeWireframe = recipeWireframe
         self.recipeDAO = recipeDAO
     }
 
@@ -23,42 +25,33 @@ class RecipesPresenter {
         self.recipesView = recipesView
     }
 
-    func loadRecipes() {
+    func initView() {
         recipes = recipeDAO.findAll()
-        let recipeCellViewDataList = recipes.map({ (recipe) -> RecipeCellViewData in
-            return recipeCellViewDataFrom(recipe: recipe)
-        })
-
-        recipesView?.setRecipes(recipes: recipeCellViewDataList)
+        recipesView?.reloadData()
     }
 
-    private func recipeCellViewDataFrom(recipe: Recipe) -> RecipeCellViewData {
-        var recipeCellViewDataImage: UIImage
-        if let image = recipe.image {
-            recipeCellViewDataImage = image
-        } else {
-            recipeCellViewDataImage = #imageLiteral(resourceName: "placeholder_image")
-        }
-
-        let recipeCellViewData = RecipeCellViewData(name: recipe.name,
-            time: "%d minutes".localized(arguments: recipe.time),
-            ingredients: "%d ingredients".localized(arguments: recipe.ingredients.count),
-            image: recipeCellViewDataImage)
-        return recipeCellViewData
+    // MARK: - TableView Configuration
+    func numberOfSections() -> Int {
+        return 1
     }
 
-    func recipe(at index: Int) -> RecipeViewData {
-        let recipe = recipes[index]
+    func numberOfRows(inSection section: Int) -> Int {
+        return recipes.count
+    }
 
-        var recipeViewDataImage: UIImage
-        if let image = recipe.image {
-            recipeViewDataImage = image
-        } else {
-            recipeViewDataImage = #imageLiteral(resourceName: "placeholder_image")
-        }
+    func recipeCellDTO(for indexPath: IndexPath) -> RecipeCellDTO {
+        let recipe = recipes[indexPath.row]
+        let recipeCellDTO = RecipeCellDTO(name: recipe.name, time: "%d minutes".localized(arguments: recipe.time),
+            ingredientsNumber: "%d ingredients".localized(arguments: recipe.ingredients.count),
+            thumbnail: recipe.image)
 
-        return RecipeViewData(name: recipe.name, time: "%d minutes".localized(arguments: recipe.time),
-            ingredients: recipe.ingredients, image: recipeViewDataImage)
+        return recipeCellDTO
+    }
+
+    // MARK: - Next View Configuration
+    func configure(view: RecipeDetailViewController, withRecipeAt indexPath: IndexPath) {
+        let recipe = recipes[indexPath.row]
+        recipeWireframe.assembleRecipeDetailModuleWith(view: view, recipe: recipe)
     }
 
 }

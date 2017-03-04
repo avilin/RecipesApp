@@ -10,6 +10,6 @@ import Foundation
 
 protocol RecipesView: NSObjectProtocol {
 
-    func setRecipes(recipes: [RecipeCellViewData])
+    func reloadData()
 
 }

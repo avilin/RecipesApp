@@ -21,17 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func configureRecipesModule() {
-        guard let navigationController = window?.rootViewController as? UINavigationController else {
-            print("There was an error loading the rootViewController")
-            fatalError()
+        if let navigationController = window?.rootViewController as? UINavigationController,
+            let recipesViewController = navigationController.visibleViewController as? RecipesViewController {
+            RecipeWireframe().assembleRecipesModuleWith(view: recipesViewController)
         }
-        guard let recipesViewController = navigationController.visibleViewController as? RecipesViewController else {
-            print("There was an error loading the visibleViewController")
-            fatalError()
-        }
-        let recipeDAO = RecipeMockDAO()
-        let recipesPresenter = RecipesPresenter(recipeDAO: recipeDAO)
-        recipesViewController.recipesPresenter = recipesPresenter
     }
 
 }

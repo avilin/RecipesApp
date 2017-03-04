@@ -10,19 +10,21 @@ import UIKit
 
 class RecipeMockDAO: RecipeDAO {
 
-    func findAll() -> [Recipe] {
-        var recipes: [Recipe] = []
+    var recipes: [Recipe] = []
 
+    init() {
         var ingredients = ["Huevos", "Patatas", "Cebolla"]
-        var image = #imageLiteral(resourceName: "placeholder_image")
+        var image: UIImage? = #imageLiteral(resourceName: "placeholder_image")
         var recipe = Recipe(name: "Tortilla de patatas", time: 10, ingredients: ingredients, image: image)
         recipes.append(recipe)
 
         ingredients = ["Carne", "Pan de hamburguesa", "Queso", "Cebolla"]
-        image = #imageLiteral(resourceName: "placeholder_image")
+        image = nil
         recipe = Recipe(name: "Hamburguesa con queso", time: 30, ingredients: ingredients, image: image)
         recipes.append(recipe)
+    }
 
+    func findAll() -> [Recipe] {
         return recipes
     }
 

@@ -8,23 +8,27 @@
 
 import UIKit
 
-// MARK: - Lifecycle
 class RecipesViewController: UITableViewController {
 
-    var recipesPresenter: RecipesPresenter?
-    var recipes: [RecipeCellViewData] = []
+    var recipesPresenter: RecipesPresenter!
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        recipesPresenter?.attachView(recipesView: self)
-        recipesPresenter?.loadRecipes()
+        recipesPresenter.attachView(recipesView: self)
+        recipesPresenter.initView()
     }
+
+}
+
+// MARK: - Navigation
+extension RecipesViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let recipeDetailViewController = segue.destination as? RecipeDetailViewController,
             let indexPath = tableView.indexPathForSelectedRow {
-            recipeDetailViewController.recipe = recipesPresenter?.recipe(at: indexPath.row)
+            recipesPresenter.configure(view: recipeDetailViewController, withRecipeAt: indexPath)
         }
     }
 
@@ -33,8 +37,7 @@ class RecipesViewController: UITableViewController {
 // MARK: - RecipesView
 extension RecipesViewController: RecipesView {
 
-    func setRecipes(recipes: [RecipeCellViewData]) {
-        self.recipes = recipes
+    func reloadData() {
         tableView.reloadData()
     }
 
@@ -44,25 +47,22 @@ extension RecipesViewController: RecipesView {
 extension RecipesViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return recipesPresenter.numberOfSections()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipes.count
+        return recipesPresenter.numberOfRows(inSection: section)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RecipeViewCell.cellID, for: indexPath) as?
-            RecipeViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RecipeCell.cellID, for: indexPath) as?
+            RecipeCell else {
             print("There was an error loading the cell")
             fatalError()
         }
 
-        let recipe = recipes[indexPath.row]
-        cell.thumbnailImageView.image = recipe.image
-        cell.nameLabel.text = recipe.name
-        cell.timeLabel.text = recipe.time
-        cell.ingredientesNumberLabel.text = recipe.ingredients
+        let recipeCellDTO = recipesPresenter.recipeCellDTO(for: indexPath)
+        cell.configure(with: recipeCellDTO)
 
         return cell
     }
