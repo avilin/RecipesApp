@@ -13,12 +13,14 @@ class Recipe {
     var name: String
     var time: Int
     var ingredients: [String]
+    var steps: [String]
     var image: UIImage?
 
-    init(name: String, time: Int, ingredients: [String], image: UIImage?) {
+    init(name: String, time: Int, ingredients: [String], steps: [String], image: UIImage?) {
         self.name = name
         self.time = time
         self.ingredients = ingredients
+        self.steps = steps
         self.image = image
     }
 

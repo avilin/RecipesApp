@@ -37,20 +37,46 @@ class RecipeDetailPresenter {
 
     // MARK: - TableView Configuration
     func numberOfSections() -> Int {
-        return 1
+        return 2
     }
 
     func numberOfRows(inSection section: Int) -> Int {
-        return recipe.ingredients.count
+        var numberOfRows = 0
+        switch section {
+        case 0:
+            numberOfRows = recipe.ingredients.count
+        case 1:
+            numberOfRows = recipe.steps.count
+        default:
+            break
+        }
+        return numberOfRows
     }
 
     func textForCell(at indexPath: IndexPath) -> String {
-        let ingredient = recipe.ingredients[indexPath.row]
-        return ingredient
+        var text = ""
+        switch indexPath.section {
+        case 0:
+            text = recipe.ingredients[indexPath.row]
+        case 1:
+            text = recipe.steps[indexPath.row]
+        default:
+            break
+        }
+        return text
     }
 
     func titleForHeader(atSection section: Int) -> String {
-        return "Ingredients".localized()
+        var title = ""
+        switch section {
+        case 0:
+            title = "Ingredients".localized()
+        case 1:
+            title = "Steps".localized()
+        default:
+            break
+        }
+        return title
     }
 
 }

@@ -25,9 +25,11 @@ class RecipeCell: UITableViewCell {
         if let thumbnail = recipeCellDTO.thumbnail {
             thumbnailImageView.image = thumbnail
             thumbnailImageView.contentMode = .scaleAspectFill
+            thumbnailImageView.layer.cornerRadius = thumbnailImageView.frame.width / 2
         } else {
             thumbnailImageView.image = #imageLiteral(resourceName: "placeholder_image")
             thumbnailImageView.contentMode = .scaleAspectFit
+            thumbnailImageView.layer.cornerRadius = 0
         }
     }
 
