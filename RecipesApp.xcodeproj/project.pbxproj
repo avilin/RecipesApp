@@ -15,7 +15,7 @@
 		7C237AB11E585981008D70D7 /* Recipes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C237AAF1E585981008D70D7 /* Recipes.storyboard */; };
 		7C237AB31E585981008D70D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C237AB21E585981008D70D7 /* Assets.xcassets */; };
 		7C237AB61E585981008D70D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C237AB41E585981008D70D7 /* LaunchScreen.storyboard */; };
-		7C25A5E31E6B24AE00D6A829 /* RecipeWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C25A5E21E6B24AE00D6A829 /* RecipeWireframe.swift */; };
+		7C25A5E31E6B24AE00D6A829 /* RecipeModuleAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C25A5E21E6B24AE00D6A829 /* RecipeModuleAssembler.swift */; };
 		7C5A9ECD1E69FFD6003FBA99 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A9ECC1E69FFD6003FBA99 /* String+Localization.swift */; };
 		7C5A9EDB1E6A0074003FBA99 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A9ECF1E6A0074003FBA99 /* Recipe.swift */; };
 		7C5A9EDC1E6A0074003FBA99 /* RecipeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A9ED01E6A0074003FBA99 /* RecipeDAO.swift */; };
@@ -42,7 +42,7 @@
 		7C237AB21E585981008D70D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C237AB51E585981008D70D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C237AB71E585981008D70D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7C25A5E21E6B24AE00D6A829 /* RecipeWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeWireframe.swift; sourceTree = "<group>"; };
+		7C25A5E21E6B24AE00D6A829 /* RecipeModuleAssembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeModuleAssembler.swift; sourceTree = "<group>"; };
 		7C5A9ECC1E69FFD6003FBA99 /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		7C5A9ECF1E6A0074003FBA99 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		7C5A9ED01E6A0074003FBA99 /* RecipeDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDAO.swift; sourceTree = "<group>"; };
@@ -81,7 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				7C237AAF1E585981008D70D7 /* Recipes.storyboard */,
-				7C25A5E21E6B24AE00D6A829 /* RecipeWireframe.swift */,
+				7C25A5E21E6B24AE00D6A829 /* RecipeModuleAssembler.swift */,
 				7C5A9ED51E6A0074003FBA99 /* RecipeList */,
 				7C5A9ED21E6A0074003FBA99 /* RecipeDetail */,
 				7C5A9ECE1E6A0074003FBA99 /* Model */,
@@ -113,7 +113,7 @@
 				7C237AB41E585981008D70D7 /* LaunchScreen.storyboard */,
 				7C237AAB1E585981008D70D7 /* AppDelegate.swift */,
 				7C19964C1E59BA0200F05686 /* Recipes */,
-				7C5A9ECB1E69FFD6003FBA99 /* Utils */,
+				7C5A9ECB1E69FFD6003FBA99 /* Extensions */,
 				7C237AB21E585981008D70D7 /* Assets.xcassets */,
 				7C237AB71E585981008D70D7 /* Info.plist */,
 				7C1FC9191E6206E800814280 /* Localizable.strings */,
@@ -121,12 +121,12 @@
 			path = RecipesApp;
 			sourceTree = "<group>";
 		};
-		7C5A9ECB1E69FFD6003FBA99 /* Utils */ = {
+		7C5A9ECB1E69FFD6003FBA99 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				7C5A9ECC1E69FFD6003FBA99 /* String+Localization.swift */,
 			);
-			path = Utils;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		7C5A9ECE1E6A0074003FBA99 /* Model */ = {
@@ -319,7 +319,7 @@
 				7C1E3B5B1E6AC8930003704A /* RecipeCellDTO.swift in Sources */,
 				7C5A9EDC1E6A0074003FBA99 /* RecipeDAO.swift in Sources */,
 				7C5A9EE11E6A0074003FBA99 /* RecipesPresenter.swift in Sources */,
-				7C25A5E31E6B24AE00D6A829 /* RecipeWireframe.swift in Sources */,
+				7C25A5E31E6B24AE00D6A829 /* RecipeModuleAssembler.swift in Sources */,
 				7C5A9EDE1E6A0074003FBA99 /* RecipeDetailViewController.swift in Sources */,
 				7C5A9EE41E6A0074003FBA99 /* RecipeCell.swift in Sources */,
 				7C237AAC1E585981008D70D7 /* AppDelegate.swift in Sources */,

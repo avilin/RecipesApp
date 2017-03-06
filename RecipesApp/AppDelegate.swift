@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func configureRecipesModule() {
         if let navigationController = window?.rootViewController as? UINavigationController,
             let recipesViewController = navigationController.visibleViewController as? RecipesViewController {
-            RecipeWireframe().assembleRecipesModuleWith(view: recipesViewController)
+            RecipeSceneAssembler().assembleRecipesScene(withView: recipesViewController)
         }
     }
 

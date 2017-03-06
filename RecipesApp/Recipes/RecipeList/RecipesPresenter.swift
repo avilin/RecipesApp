@@ -10,14 +10,14 @@ import UIKit
 
 class RecipesPresenter {
 
-    private let recipeWireframe: RecipeWireframe
+    private let recipeSceneAssembler: RecipeSceneAssembler
     private let recipeDAO: RecipeDAO
     weak private var recipesView: RecipesView?
 
     var recipes: [Recipe] = []
 
-    init(recipeWireframe: RecipeWireframe, recipeDAO: RecipeDAO) {
-        self.recipeWireframe = recipeWireframe
+    init(recipeSceneAssembler: RecipeSceneAssembler, recipeDAO: RecipeDAO) {
+        self.recipeSceneAssembler = recipeSceneAssembler
         self.recipeDAO = recipeDAO
     }
 
@@ -51,7 +51,7 @@ class RecipesPresenter {
     // MARK: - Next View Configuration
     func configure(view: RecipeDetailViewController, withRecipeAt indexPath: IndexPath) {
         let recipe = recipes[indexPath.row]
-        recipeWireframe.assembleRecipeDetailModuleWith(view: view, recipe: recipe)
+        recipeSceneAssembler.assembleRecipeDetailSceneWith(view: view, recipe: recipe)
     }
 
 }
