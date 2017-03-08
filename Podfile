@@ -7,4 +7,5 @@ target 'RecipesApp' do
 
   # Pods for RecipesApp
   pod 'SwiftLint'
+  pod 'Cosmos', '~> 8.0'
 end
