@@ -10,6 +10,7 @@ import UIKit
 
 class RecipesViewController: UITableViewController {
 
+    // MARK: - Properties
     var recipesPresenter: RecipesPresenter!
 
     // MARK: - Lifecycle
@@ -20,11 +21,7 @@ class RecipesViewController: UITableViewController {
         recipesPresenter.initView()
     }
 
-}
-
-// MARK: - Navigation
-extension RecipesViewController {
-
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let recipeDetailViewController = segue.destination as? RecipeDetailViewController,
             let indexPath = tableView.indexPathForSelectedRow {

@@ -7,14 +7,19 @@
 //
 
 import UIKit
+import Cosmos
 
 class RecipeDetailViewController: UIViewController {
 
+    // MARK: - IBOutlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var ratingView: CosmosView!
 
+    // MARK: - Constants
     static let cellID = "RecipeDetailViewCell"
 
+    // MARK: - Properties
     var recipeDetailPresenter: RecipeDetailPresenter!
 
     // MARK: - Lifecycle
@@ -23,6 +28,23 @@ class RecipeDetailViewController: UIViewController {
 
         recipeDetailPresenter.attachView(recipeDetailView: self)
         recipeDetailPresenter.initView()
+    }
+
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let ratingViewController = segue.destination as? RatingViewController {
+            recipeDetailPresenter.configure(view: ratingViewController)
+        }
+    }
+
+    @IBAction func cancelRating(segue: UIStoryboardSegue) {
+    }
+
+    @IBAction func doneRating(segue: UIStoryboardSegue) {
+        if let ratingViewController = segue.source as? RatingViewController {
+            let rating = ratingViewController.rating
+            recipeDetailPresenter.ratingSelected(rating)
+        }
     }
 
 }
@@ -46,6 +68,10 @@ extension RecipeDetailViewController: RecipeDetailView {
     func setPlaceholderImage() {
         imageView.image = #imageLiteral(resourceName: "placeholder_image")
         imageView.contentMode = .scaleAspectFit
+    }
+
+    func setRecipeRating(_ rating: Double) {
+        ratingView.rating = rating
     }
 
 }

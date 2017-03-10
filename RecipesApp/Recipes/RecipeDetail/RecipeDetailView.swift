@@ -18,4 +18,6 @@ protocol RecipeDetailView: NSObjectProtocol {
 
     func setPlaceholderImage()
 
+    func setRecipeRating(_ rating: Double)
+
 }

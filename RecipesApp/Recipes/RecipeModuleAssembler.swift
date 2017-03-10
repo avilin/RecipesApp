@@ -18,8 +18,13 @@ class RecipeSceneAssembler {
     }
 
     func assembleRecipeDetailSceneWith(view recipeDetailViewController: RecipeDetailViewController, recipe: Recipe) {
-        let recipeDetailPresenter = RecipeDetailPresenter(recipeDAO: recipeDAO, recipe: recipe)
+        let recipeDetailPresenter = RecipeDetailPresenter(recipeSceneAssembler: self, recipeDAO: recipeDAO,
+                                                          recipe: recipe)
         recipeDetailViewController.recipeDetailPresenter = recipeDetailPresenter
+    }
+
+    func assembleRatingSceneWith(view ratingViewController: RatingViewController, rating: Double) {
+        ratingViewController.rating = rating
     }
 
 }

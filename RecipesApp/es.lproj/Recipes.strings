@@ -14,5 +14,17 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "Uwv-qH-qlO"; */
 "Uwv-qH-qlO.text" = "Label";
 
+/* Class = "UILabel"; text = "Title"; ObjectID = "aB8-3m-HuY"; */
+"aB8-3m-HuY.text" = "Title";
+
+/* Class = "UILabel"; text = "Rating"; ObjectID = "lmW-VC-yXf"; */
+"lmW-VC-yXf.text" = "Valoración";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "vrC-ki-x2I"; */
 "vrC-ki-x2I.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Rate the recipe"; ObjectID = "zve-s7-Z2z"; */
+"zve-s7-Z2z.title" = "Valora la receta";
+
+/* Class = "UILabel"; text = "How would you rate this recipe?"; ObjectID = "zzy-WE-FkI"; */
+"zzy-WE-FkI.text" = "¿Qué valoración le darías a esta receta?";

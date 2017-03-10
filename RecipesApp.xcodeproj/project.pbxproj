@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C179A3B1E71F08D005EC0DB /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C179A3A1E71F08D005EC0DB /* RatingViewController.swift */; };
 		7C1E3B5B1E6AC8930003704A /* RecipeCellDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1E3B5A1E6AC8930003704A /* RecipeCellDTO.swift */; };
 		7C1E3B5D1E6AD37A0003704A /* RecipeDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1E3B5C1E6AD37A0003704A /* RecipeDetailPresenter.swift */; };
 		7C1E3B5F1E6AD3D50003704A /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1E3B5E1E6AD3D50003704A /* RecipeDetailView.swift */; };
@@ -29,7 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7C1C41F91E68B4BF00E48DED /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Recipes.strings; sourceTree = "<group>"; };
+		7C179A3A1E71F08D005EC0DB /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
+		7C1A43C21E72F7F600AFF0F1 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Recipes.strings; sourceTree = "<group>"; };
 		7C1E3B5A1E6AC8930003704A /* RecipeCellDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCellDTO.swift; sourceTree = "<group>"; };
 		7C1E3B5C1E6AD37A0003704A /* RecipeDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailPresenter.swift; sourceTree = "<group>"; };
 		7C1E3B5E1E6AD3D50003704A /* RecipeDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7C179A391E71F043005EC0DB /* RecipeRating */ = {
+			isa = PBXGroup;
+			children = (
+				7C179A3A1E71F08D005EC0DB /* RatingViewController.swift */,
+			);
+			path = RecipeRating;
+			sourceTree = "<group>";
+		};
 		7C19964C1E59BA0200F05686 /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +94,7 @@
 				7C25A5E21E6B24AE00D6A829 /* RecipeModuleAssembler.swift */,
 				7C5A9ED51E6A0074003FBA99 /* RecipeList */,
 				7C5A9ED21E6A0074003FBA99 /* RecipeDetail */,
+				7C179A391E71F043005EC0DB /* RecipeRating */,
 				7C5A9ECE1E6A0074003FBA99 /* Model */,
 			);
 			path = Recipes;
@@ -315,6 +326,7 @@
 				7C5A9EE31E6A0074003FBA99 /* RecipesViewController.swift in Sources */,
 				7C5A9EDD1E6A0074003FBA99 /* RecipeMockDAO.swift in Sources */,
 				7C5A9ECD1E69FFD6003FBA99 /* String+Localization.swift in Sources */,
+				7C179A3B1E71F08D005EC0DB /* RatingViewController.swift in Sources */,
 				7C1E3B5D1E6AD37A0003704A /* RecipeDetailPresenter.swift in Sources */,
 				7C1E3B5B1E6AC8930003704A /* RecipeCellDTO.swift in Sources */,
 				7C5A9EDC1E6A0074003FBA99 /* RecipeDAO.swift in Sources */,
@@ -342,7 +354,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7C237AB01E585981008D70D7 /* Base */,
-				7C1C41F91E68B4BF00E48DED /* es */,
+				7C1A43C21E72F7F600AFF0F1 /* es */,
 			);
 			name = Recipes.storyboard;
 			path = ..;

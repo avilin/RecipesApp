@@ -15,6 +15,7 @@ class Recipe {
     var ingredients: [String]
     var steps: [String]
     var image: UIImage?
+    var rating = 0.0
 
     init(name: String, time: Int, ingredients: [String], steps: [String], image: UIImage?) {
         self.name = name

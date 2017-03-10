@@ -10,13 +10,16 @@ import UIKit
 
 class RecipeCell: UITableViewCell {
 
+    // MARK: - IBOutlets
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var ingredientsNumberLabel: UILabel!
 
+    // MARK: - Constants
     static let cellID = "RecipeViewCell"
 
+    // MARK: - Custom functions
     func configure(with recipeCellDTO: RecipeCellDTO) {
         nameLabel.text = recipeCellDTO.name
         timeLabel.text = recipeCellDTO.time

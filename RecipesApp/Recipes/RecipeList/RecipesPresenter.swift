@@ -10,12 +10,14 @@ import UIKit
 
 class RecipesPresenter {
 
+    // MARK: - Properties
     private let recipeSceneAssembler: RecipeSceneAssembler
     private let recipeDAO: RecipeDAO
     weak private var recipesView: RecipesView?
 
     var recipes: [Recipe] = []
 
+    // MARK: - Initialization
     init(recipeSceneAssembler: RecipeSceneAssembler, recipeDAO: RecipeDAO) {
         self.recipeSceneAssembler = recipeSceneAssembler
         self.recipeDAO = recipeDAO
@@ -25,6 +27,7 @@ class RecipesPresenter {
         self.recipesView = recipesView
     }
 
+    // MARK: - View Configuration
     func initView() {
         recipes = recipeDAO.findAll()
         recipesView?.reloadData()
@@ -48,7 +51,7 @@ class RecipesPresenter {
         return recipeCellDTO
     }
 
-    // MARK: - Next View Configuration
+    // MARK: - Navigation Configuration
     func configure(view: RecipeDetailViewController, withRecipeAt indexPath: IndexPath) {
         let recipe = recipes[indexPath.row]
         recipeSceneAssembler.assembleRecipeDetailSceneWith(view: view, recipe: recipe)

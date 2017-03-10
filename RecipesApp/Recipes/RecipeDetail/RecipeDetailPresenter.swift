@@ -10,12 +10,16 @@ import Foundation
 
 class RecipeDetailPresenter {
 
+    // MARK: - Properties
+    private let recipeSceneAssembler: RecipeSceneAssembler
     private let recipeDAO: RecipeDAO
     weak private var recipeDetailView: RecipeDetailView?
 
     private let recipe: Recipe
 
-    init(recipeDAO: RecipeDAO, recipe: Recipe) {
+    // MARK: - Initialization
+    init(recipeSceneAssembler: RecipeSceneAssembler, recipeDAO: RecipeDAO, recipe: Recipe) {
+        self.recipeSceneAssembler = recipeSceneAssembler
         self.recipeDAO = recipeDAO
         self.recipe = recipe
     }
@@ -24,6 +28,7 @@ class RecipeDetailPresenter {
         self.recipeDetailView = recipeDetailView
     }
 
+    // MARK: - View Configuration
     func initView() {
         recipeDetailView?.setRecipeName(recipe.name)
         recipeDetailView?.setRecipeTime("%d minutes".localized(arguments: recipe.time))
@@ -33,6 +38,13 @@ class RecipeDetailPresenter {
         } else {
             recipeDetailView?.setPlaceholderImage()
         }
+
+        recipeDetailView?.setRecipeRating(recipe.rating)
+    }
+
+    func ratingSelected(_ rating: Double) {
+        recipe.rating = rating
+        recipeDetailView?.setRecipeRating(rating)
     }
 
     // MARK: - TableView Configuration
@@ -77,6 +89,12 @@ class RecipeDetailPresenter {
             break
         }
         return title
+    }
+
+    // MARK: - Navigation Configuration
+    func configure(view: RatingViewController) {
+        let rating = recipe.rating
+        recipeSceneAssembler.assembleRatingSceneWith(view: view, rating: rating)
     }
 
 }
