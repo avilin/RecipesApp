@@ -14,4 +14,6 @@ protocol RecipesView: NSObjectProtocol {
 
     func share(data: [Any])
 
+    func updateTableWithRowDeleted(at indexPath: IndexPath)
+
 }

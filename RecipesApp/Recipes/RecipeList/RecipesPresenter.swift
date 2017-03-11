@@ -42,7 +42,7 @@ class RecipesPresenter {
         return recipes.count
     }
 
-    func recipeCellDTO(for indexPath: IndexPath) -> RecipeCellDTO {
+    func recipeData(for indexPath: IndexPath) -> RecipeCellDTO {
         let recipe = recipes[indexPath.row]
         let recipeCellDTO = RecipeCellDTO(name: recipe.name, time: "%d minutes".localized(arguments: recipe.time),
             ingredientsNumber: "%d ingredients".localized(arguments: recipe.ingredients.count),
@@ -51,8 +51,19 @@ class RecipesPresenter {
         return recipeCellDTO
     }
 
-    func titleForCellShareAction() -> String {
-        return "Share".localized()
+    func cellActions(for indexPath: IndexPath) -> [RecipeCellActionDTO] {
+        let shareTitle = "Share".localized()
+        let shareBackgroundColor = UIColor(red: 30.0/255.0, green: 164.0/255.0, blue: 253.0/255.0, alpha: 1.0)
+        let shareAction = RecipeCellActionDTO(title: shareTitle, backgroundColor: shareBackgroundColor) { (indexPath) in
+            self.shareData(for: indexPath)
+        }
+
+        let deleteTitle = "Delete".localized()
+        let deleteAction = RecipeCellActionDTO(title: deleteTitle, backgroundColor: nil) { (indexPath) in
+            self.removeRecipe(at: indexPath)
+        }
+
+        return [shareAction, deleteAction]
     }
 
     // MARK: - Navigation Configuration
@@ -67,6 +78,11 @@ class RecipesPresenter {
         let shareText = "I like the recipe of %@".localized(arguments: recipe.name)
         let shareImage = recipe.image ?? #imageLiteral(resourceName: "placeholder_image")
         recipesView?.share(data: [shareText, shareImage])
+    }
+
+    func removeRecipe(at indexPath: IndexPath) {
+        recipes.remove(at: indexPath.row)
+        recipesView?.updateTableWithRowDeleted(at: indexPath)
     }
 
 }

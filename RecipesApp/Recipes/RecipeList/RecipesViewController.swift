@@ -29,12 +29,6 @@ class RecipesViewController: UITableViewController {
         }
     }
 
-    func share(data: [Any]) {
-        let activityController = UIActivityViewController(
-            activityItems: data, applicationActivities: nil)
-        self.present(activityController, animated: true, completion: nil)
-    }
-
 }
 
 // MARK: - RecipesView
@@ -42,6 +36,16 @@ extension RecipesViewController: RecipesView {
 
     func reloadData() {
         tableView.reloadData()
+    }
+
+    func share(data: [Any]) {
+        let activityController = UIActivityViewController(
+            activityItems: data, applicationActivities: nil)
+        self.present(activityController, animated: true, completion: nil)
+    }
+
+    func updateTableWithRowDeleted(at indexPath: IndexPath) {
+        tableView.deleteRows(at: [indexPath], with: .fade)
     }
 
 }
@@ -64,7 +68,7 @@ extension RecipesViewController {
             fatalError()
         }
 
-        let recipeCellDTO = recipesPresenter.recipeCellDTO(for: indexPath)
+        let recipeCellDTO = recipesPresenter.recipeData(for: indexPath)
         cell.configure(with: recipeCellDTO)
 
         return cell
@@ -72,13 +76,19 @@ extension RecipesViewController {
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath)
         -> [UITableViewRowAction]? {
-        let shareActionTitle = recipesPresenter.titleForCellShareAction()
-        let shareAction = UITableViewRowAction(style: .default, title: shareActionTitle) { (_, indexPath) in
-            self.recipesPresenter.shareData(for: indexPath)
+        var rowActions: [UITableViewRowAction] = []
+        let actions = recipesPresenter.cellActions(for: indexPath)
+        for action in actions {
+            let rowAction = UITableViewRowAction(style: .default, title: action.title, handler: { (_, indexPath) in
+                action.action(indexPath)
+            })
+            if let backgroundColor = action.backgroundColor {
+                rowAction.backgroundColor = backgroundColor
+            }
+            rowActions.append(rowAction)
         }
-        shareAction.backgroundColor = UIColor(red: 30.0/255.0, green: 164.0/255.0, blue: 253.0/255.0, alpha: 1.0)
 
-        return [shareAction]
+        return rowActions
     }
 
 }
