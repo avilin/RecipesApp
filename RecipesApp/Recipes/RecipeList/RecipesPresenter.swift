@@ -51,10 +51,22 @@ class RecipesPresenter {
         return recipeCellDTO
     }
 
+    func titleForCellShareAction() -> String {
+        return "Share".localized()
+    }
+
     // MARK: - Navigation Configuration
     func configure(view: RecipeDetailViewController, withRecipeAt indexPath: IndexPath) {
         let recipe = recipes[indexPath.row]
         recipeSceneAssembler.assembleRecipeDetailSceneWith(view: view, recipe: recipe)
+    }
+
+    // MARK: - Custom functions
+    func shareData(for indexPath: IndexPath) {
+        let recipe = recipes[indexPath.row]
+        let shareText = "I like the recipe of %@".localized(arguments: recipe.name)
+        let shareImage = recipe.image ?? #imageLiteral(resourceName: "placeholder_image")
+        recipesView?.share(data: [shareText, shareImage])
     }
 
 }

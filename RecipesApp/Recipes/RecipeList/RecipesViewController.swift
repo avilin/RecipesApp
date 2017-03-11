@@ -29,6 +29,12 @@ class RecipesViewController: UITableViewController {
         }
     }
 
+    func share(data: [Any]) {
+        let activityController = UIActivityViewController(
+            activityItems: data, applicationActivities: nil)
+        self.present(activityController, animated: true, completion: nil)
+    }
+
 }
 
 // MARK: - RecipesView
@@ -62,6 +68,17 @@ extension RecipesViewController {
         cell.configure(with: recipeCellDTO)
 
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath)
+        -> [UITableViewRowAction]? {
+        let shareActionTitle = recipesPresenter.titleForCellShareAction()
+        let shareAction = UITableViewRowAction(style: .default, title: shareActionTitle) { (_, indexPath) in
+            self.recipesPresenter.shareData(for: indexPath)
+        }
+        shareAction.backgroundColor = UIColor(red: 30.0/255.0, green: 164.0/255.0, blue: 253.0/255.0, alpha: 1.0)
+
+        return [shareAction]
     }
 
 }

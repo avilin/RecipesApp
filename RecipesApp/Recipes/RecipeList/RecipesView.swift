@@ -12,4 +12,6 @@ protocol RecipesView: NSObjectProtocol {
 
     func reloadData()
 
+    func share(data: [Any])
+
 }
