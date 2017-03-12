@@ -81,7 +81,8 @@ class RecipesPresenter {
     }
 
     func removeRecipe(at indexPath: IndexPath) {
-        recipes.remove(at: indexPath.row)
+        let recipe = recipes[indexPath.row]
+        recipeDAO.remove(recipe: recipe)
         recipesView?.updateTableWithRowDeleted(at: indexPath)
     }
 

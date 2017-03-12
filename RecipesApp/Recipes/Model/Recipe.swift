@@ -26,3 +26,12 @@ class Recipe {
     }
 
 }
+
+extension Recipe: Equatable {
+
+    static func == (lhs: Recipe, rhs: Recipe) -> Bool {
+        return lhs.name == rhs.name && lhs.time == rhs.time && lhs.ingredients == rhs.ingredients
+            && lhs.steps == rhs.steps && lhs.image == rhs.image && lhs.rating == rhs.rating
+    }
+
+}

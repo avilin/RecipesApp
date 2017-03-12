@@ -33,4 +33,10 @@ class RecipeMockDAO: RecipeDAO {
         return recipes
     }
 
+    func remove(recipe: Recipe) {
+        if let index = recipes.index(of: recipe) {
+            recipes.remove(at: index)
+        }
+    }
+
 }
