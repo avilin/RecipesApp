@@ -32,7 +32,6 @@
 
 /* Begin PBXFileReference section */
 		7C179A3A1E71F08D005EC0DB /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
-		7C1A43C21E72F7F600AFF0F1 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Recipes.strings; sourceTree = "<group>"; };
 		7C1E3B5A1E6AC8930003704A /* RecipeCellDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCellDTO.swift; sourceTree = "<group>"; };
 		7C1E3B5C1E6AD37A0003704A /* RecipeDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailPresenter.swift; sourceTree = "<group>"; };
 		7C1E3B5E1E6AD3D50003704A /* RecipeDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
@@ -46,6 +45,7 @@
 		7C237AB21E585981008D70D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C237AB51E585981008D70D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C237AB71E585981008D70D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C2477CD1E7744640053DA01 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Recipes.strings; sourceTree = "<group>"; };
 		7C25A5E21E6B24AE00D6A829 /* RecipeModuleAssembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeModuleAssembler.swift; sourceTree = "<group>"; };
 		7C5A9ECC1E69FFD6003FBA99 /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		7C5A9ECF1E6A0074003FBA99 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
@@ -358,7 +358,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7C237AB01E585981008D70D7 /* Base */,
-				7C1A43C21E72F7F600AFF0F1 /* es */,
+				7C2477CD1E7744640053DA01 /* es */,
 			);
 			name = Recipes.storyboard;
 			path = ..;

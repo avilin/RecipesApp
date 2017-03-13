@@ -17,7 +17,7 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var ratingView: CosmosView!
 
     // MARK: - Constants
-    static let cellID = "RecipeDetailViewCell"
+    static let cellID = "BasicCell"
 
     // MARK: - Properties
     var recipeDetailPresenter: RecipeDetailPresenter!

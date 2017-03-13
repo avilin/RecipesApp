@@ -28,3 +28,31 @@
 
 /* Class = "UILabel"; text = "How would you rate this recipe?"; ObjectID = "zzy-WE-FkI"; */
 "zzy-WE-FkI.text" = "¿Qué valoración le darías a esta receta?";
+
+/* Class = "UINavigationItem"; title = "Create recipe"; ObjectID = "GbE-8S-j9Z"; */
+"GbE-8S-j9Z.title" = "Crear receta";
+
+/* Class = "UIButton"; normalTitle = "Select image"; ObjectID = "XaX-CC-Usm"; */
+"XaX-CC-Usm.normalTitle" = "Seleccionar imagen";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "pPW-sL-3Vz"; */
+"pPW-sL-3Vz.text" = "Nombre";
+
+/* Class = "UITextField"; placeholder = "Introduce the name"; ObjectID = "QDN-sg-Ec1"; */
+"QDN-sg-Ec1.placeholder" = "Introduce el nombre";
+
+/* Class = "UILabel"; text = "Time"; ObjectID = "J5x-9F-H5v"; */
+"J5x-9F-H5v.text" = "Tiempo";
+
+/* Class = "UITextField"; placeholder = "Introduce the time"; ObjectID = "Gmh-uh-xzH"; */
+"Gmh-uh-xzH.placeholder" = "Introduce el tiempo";
+
+/* Class = "UIButton"; normalTitle = "Edit ingredients"; ObjectID = "3PM-Xw-vh8"; */
+"3PM-Xw-vh8.normalTitle" = "Editar ingredientes";
+
+/* Class = "UIButton"; normalTitle = "Edit steps"; ObjectID = "BF1-up-jm0"; */
+"BF1-up-jm0.normalTitle" = "Editar pasos";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "hAy-qJ-wcw"; */
+"hAy-qJ-wcw.text" = "Title";
+
