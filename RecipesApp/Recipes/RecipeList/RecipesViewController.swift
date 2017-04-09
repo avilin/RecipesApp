@@ -18,6 +18,11 @@ class RecipesViewController: UITableViewController {
         super.viewDidLoad()
 
         recipesPresenter.attachView(recipesView: self)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+
         recipesPresenter.initView()
     }
 
@@ -26,6 +31,8 @@ class RecipesViewController: UITableViewController {
         if let recipeDetailViewController = segue.destination as? RecipeDetailViewController,
             let indexPath = tableView.indexPathForSelectedRow {
             recipesPresenter.configure(view: recipeDetailViewController, withRecipeAt: indexPath)
+        } else if let createRecipeViewController = segue.destination as? CreateRecipeViewController {
+            recipesPresenter.configure(view: createRecipeViewController)
         }
     }
 

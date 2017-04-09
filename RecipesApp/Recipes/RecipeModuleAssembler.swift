@@ -27,4 +27,9 @@ class RecipeSceneAssembler {
         ratingViewController.rating = rating
     }
 
+    func assembleCreateRecipeScene(withView createRecipeViewController: CreateRecipeViewController) {
+        let createRecipePresenter = CreateRecipePresenter(recipeDAO: recipeDAO)
+        createRecipeViewController.createRecipePresenter = createRecipePresenter
+    }
+
 }

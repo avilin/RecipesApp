@@ -72,6 +72,10 @@ class RecipesPresenter {
         recipeSceneAssembler.assembleRecipeDetailSceneWith(view: view, recipe: recipe)
     }
 
+    func configure(view: CreateRecipeViewController) {
+        recipeSceneAssembler.assembleCreateRecipeScene(withView: view)
+    }
+
     // MARK: - Custom functions
     func shareData(for indexPath: IndexPath) {
         let recipe = recipes[indexPath.row]

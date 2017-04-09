@@ -10,6 +10,8 @@ protocol RecipeDAO {
 
     func findAll() -> [Recipe]
 
+    func save(recipe: Recipe)
+
     func remove(recipe: Recipe)
 
 }

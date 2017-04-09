@@ -13,3 +13,9 @@
 "Share" = "Compartir";
 "I like the recipe of %@" = "Me gusta la receta de %@";
 "Delete" = "Eliminar";
+"Add ingredient" = "Añadir ingrediente";
+"Add step" = "Añadir paso";
+"Introduce the new ingredient..." = "Introduce el nuevo ingrediente...";
+"Introduce the new step..." = "Introduce el nuevo paso...";
+"Add" = "Añadir";
+"Cancel" = "Cancelar";

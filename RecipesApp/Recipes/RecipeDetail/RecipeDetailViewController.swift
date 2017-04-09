@@ -96,4 +96,5 @@ extension RecipeDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return recipeDetailPresenter.titleForHeader(atSection: section)
     }
+
 }
