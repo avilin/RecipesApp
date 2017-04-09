@@ -19,12 +19,16 @@ class CreateRecipeViewController: UIViewController {
 
     // MARK: - Properties
     var createRecipePresenter: CreateRecipePresenter!
+    var keyboardHelper: KeyboardHelper?
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         createRecipePresenter.attachView(createRecipeView: self)
+
+        keyboardHelper = KeyboardHelper()
+        keyboardHelper?.configure(viewController: self)
     }
 
     // MARK: - IBActions
@@ -45,6 +49,7 @@ class CreateRecipeViewController: UIViewController {
                                                 preferredStyle: .alert)
         alertController.addTextField { (textField) in
             textField.placeholder = "Introduce the new ingredient...".localized()
+            textField.delegate = self
         }
 
         let cancelAction = UIAlertAction(title: "Cancel".localized(), style: .default)
@@ -65,6 +70,7 @@ class CreateRecipeViewController: UIViewController {
                                                 preferredStyle: .alert)
         alertController.addTextField { (textField) in
             textField.placeholder = "Introduce the new step...".localized()
+            textField.delegate = self
         }
 
         let cancelAction = UIAlertAction(title: "Cancel".localized(), style: .default)
@@ -106,6 +112,8 @@ extension CreateRecipeViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         if textField == nameTextField {
             timeTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
         }
         return true
     }
