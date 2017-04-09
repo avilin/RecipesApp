@@ -51,15 +51,15 @@ class RecipesPresenter {
         return recipeCellDTO
     }
 
-    func cellActions(for indexPath: IndexPath) -> [RecipeCellActionDTO] {
+    func cellActions(for indexPath: IndexPath) -> [CellActionDTO] {
         let shareTitle = "Share".localized()
         let shareBackgroundColor = UIColor(red: 30.0/255.0, green: 164.0/255.0, blue: 253.0/255.0, alpha: 1.0)
-        let shareAction = RecipeCellActionDTO(title: shareTitle, backgroundColor: shareBackgroundColor) { (indexPath) in
+        let shareAction = CellActionDTO(title: shareTitle, backgroundColor: shareBackgroundColor) { (indexPath) in
             self.shareData(for: indexPath)
         }
 
         let deleteTitle = "Delete".localized()
-        let deleteAction = RecipeCellActionDTO(title: deleteTitle, backgroundColor: nil) { (indexPath) in
+        let deleteAction = CellActionDTO(title: deleteTitle, backgroundColor: nil) { (indexPath) in
             self.removeRecipe(at: indexPath)
         }
 

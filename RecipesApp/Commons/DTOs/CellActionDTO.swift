@@ -1,5 +1,5 @@
 //
-//  RecipeCellActionDTO.swift
+//  CellActionDTO.swift
 //  RecipesApp
 //
 //  Created by Andrés Vicente Linares on 11/3/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecipeCellActionDTO {
+class CellActionDTO {
 
     let title: String
     let backgroundColor: UIColor?
