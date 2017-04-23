@@ -47,11 +47,11 @@
 /* Class = "UITextField"; placeholder = "Introduce the time"; ObjectID = "Gmh-uh-xzH"; */
 "Gmh-uh-xzH.placeholder" = "Introduce el tiempo";
 
-/* Class = "UIButton"; normalTitle = "Edit ingredients"; ObjectID = "3PM-Xw-vh8"; */
-"3PM-Xw-vh8.normalTitle" = "Editar ingredientes";
+/* Class = "UIButton"; normalTitle = "Add ingredient"; ObjectID = "3PM-Xw-vh8"; */
+"3PM-Xw-vh8.normalTitle" = "Añadir ingrediente";
 
-/* Class = "UIButton"; normalTitle = "Edit steps"; ObjectID = "BF1-up-jm0"; */
-"BF1-up-jm0.normalTitle" = "Editar pasos";
+/* Class = "UIButton"; normalTitle = "Add step"; ObjectID = "BF1-up-jm0"; */
+"BF1-up-jm0.normalTitle" = "Añadir paso";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "hAy-qJ-wcw"; */
 "hAy-qJ-wcw.text" = "Title";

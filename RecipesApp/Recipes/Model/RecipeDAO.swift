@@ -6,11 +6,17 @@
 //  Copyright © 2017 Andrés Vicente Linares. All rights reserved.
 //
 
+import Foundation
+
 protocol RecipeDAO {
 
-    func findAll() -> [Recipe]
+    func configure(with recipeUpdateDelegate: RecipeUpdateDelegate)
 
-    func save(recipe: Recipe)
+    func findAll()
+
+    func saveRecipeWith(name: String, time: Int, ingredients: [String], steps: [String], imageData: Data?)
+
+    func update()
 
     func remove(recipe: Recipe)
 

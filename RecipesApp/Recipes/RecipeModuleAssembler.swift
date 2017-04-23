@@ -10,11 +10,16 @@ import UIKit
 
 class RecipeSceneAssembler {
 
-    lazy var recipeDAO = RecipeMockDAO()
+    private let recipeDAO: RecipeDAO
+
+    init(coreDataManager: CoreDataManager) {
+        recipeDAO = RecipeCoreDataDAO(coreDataManager: coreDataManager)
+    }
 
     func assembleRecipesScene(withView recipesViewController: RecipesViewController) {
         let recipesPresenter = RecipesPresenter(recipeSceneAssembler: self, recipeDAO: recipeDAO)
         recipesViewController.recipesPresenter = recipesPresenter
+        recipeDAO.configure(with: recipesPresenter)
     }
 
     func assembleRecipeDetailSceneWith(view recipeDetailViewController: RecipeDetailViewController, recipe: Recipe) {

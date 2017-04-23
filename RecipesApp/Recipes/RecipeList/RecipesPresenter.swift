@@ -8,12 +8,12 @@
 
 import UIKit
 
-class RecipesPresenter {
+class RecipesPresenter: NSObject {
 
     // MARK: - Properties
     private let recipeSceneAssembler: RecipeSceneAssembler
     private let recipeDAO: RecipeDAO
-    weak private var recipesView: RecipesView?
+    weak fileprivate var recipesView: RecipesView?
 
     var recipes: [Recipe] = []
 
@@ -29,8 +29,7 @@ class RecipesPresenter {
 
     // MARK: - View Configuration
     func initView() {
-        recipes = recipeDAO.findAll()
-        recipesView?.reloadData()
+        recipeDAO.findAll()
     }
 
     // MARK: - TableView Configuration
@@ -46,7 +45,7 @@ class RecipesPresenter {
         let recipe = recipes[indexPath.row]
         let recipeCellDTO = RecipeCellDTO(name: recipe.name, time: "%d minutes".localized(arguments: recipe.time),
             ingredientsNumber: "%d ingredients".localized(arguments: recipe.ingredients.count),
-            thumbnail: recipe.image)
+            thumbnail: recipe.getImage())
 
         return recipeCellDTO
     }
@@ -80,14 +79,47 @@ class RecipesPresenter {
     func shareData(for indexPath: IndexPath) {
         let recipe = recipes[indexPath.row]
         let shareText = "I like the recipe of %@".localized(arguments: recipe.name)
-        let shareImage = recipe.image ?? #imageLiteral(resourceName: "placeholder_image")
+        let shareImage = recipe.getImage() ?? #imageLiteral(resourceName: "placeholder_image")
         recipesView?.share(data: [shareText, shareImage])
     }
 
     func removeRecipe(at indexPath: IndexPath) {
         let recipe = recipes[indexPath.row]
         recipeDAO.remove(recipe: recipe)
-        recipesView?.updateTableWithRowDeleted(at: indexPath)
+    }
+
+}
+
+// MARK: - RecipeUpdateDelegate
+extension RecipesPresenter: RecipeUpdateDelegate {
+
+    func beginUpdates() {
+        recipesView?.beginTableUpdates()
+    }
+
+    func insertRecipe(at indexPath: IndexPath) {
+        recipesView?.insertRecipe(at: indexPath)
+    }
+
+    func reloadRecipe(at indexPath: IndexPath) {
+        recipesView?.reloadRecipe(at: indexPath)
+    }
+
+    func deleteRecipe(at indexPath: IndexPath) {
+        recipesView?.deleteRecipe(at: indexPath)
+    }
+
+    func moveRecipe(at indexPath: IndexPath, to newIndexPath: IndexPath) {
+        recipesView?.moveRecipe(at: indexPath, to: newIndexPath)
+    }
+
+    func assign(recipes: [Recipe]) {
+        self.recipes = recipes
+        recipesView?.reloadData()
+    }
+
+    func endUpdates() {
+        recipesView?.endTableUpdates()
     }
 
 }

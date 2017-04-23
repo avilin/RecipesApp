@@ -18,11 +18,6 @@ class RecipesViewController: UITableViewController {
         super.viewDidLoad()
 
         recipesPresenter.attachView(recipesView: self)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-
         recipesPresenter.initView()
     }
 
@@ -51,8 +46,28 @@ extension RecipesViewController: RecipesView {
         self.present(activityController, animated: true, completion: nil)
     }
 
-    func updateTableWithRowDeleted(at indexPath: IndexPath) {
+    func beginTableUpdates() {
+        tableView.beginUpdates()
+    }
+
+    func insertRecipe(at indexPath: IndexPath) {
+        tableView.insertRows(at: [indexPath], with: .fade)
+    }
+
+    func reloadRecipe(at indexPath: IndexPath) {
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+
+    func deleteRecipe(at indexPath: IndexPath) {
         tableView.deleteRows(at: [indexPath], with: .fade)
+    }
+
+    func moveRecipe(at indexPath: IndexPath, to newIndexPath: IndexPath) {
+        tableView.moveRow(at: indexPath, to: newIndexPath)
+    }
+
+    func endTableUpdates() {
+        tableView.endUpdates()
     }
 
 }

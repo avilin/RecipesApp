@@ -33,7 +33,7 @@ class RecipeDetailPresenter {
         recipeDetailView?.setRecipeName(recipe.name)
         recipeDetailView?.setRecipeTime("%d minutes".localized(arguments: recipe.time))
 
-        if let image = recipe.image {
+        if let image = recipe.getImage() {
             recipeDetailView?.setRecipeImage(image)
         } else {
             recipeDetailView?.setPlaceholderImage()
@@ -44,6 +44,7 @@ class RecipeDetailPresenter {
 
     func ratingSelected(_ rating: Double) {
         recipe.rating = rating
+        recipeDAO.update()
         recipeDetailView?.setRecipeRating(rating)
     }
 

@@ -7,31 +7,22 @@
 //
 
 import UIKit
+import CoreData
 
-class Recipe {
+class Recipe: NSManagedObject {
 
-    var name: String
-    var time: Int
-    var ingredients: [String]
-    var steps: [String]
-    var image: UIImage?
-    var rating = 0.0
+    @NSManaged var name: String
+    @NSManaged var time: Int64
+    @NSManaged var ingredients: [String]
+    @NSManaged var steps: [String]
+    @NSManaged var imageData: Data?
+    @NSManaged var rating: Double
 
-    init(name: String, time: Int, ingredients: [String], steps: [String], image: UIImage?) {
-        self.name = name
-        self.time = time
-        self.ingredients = ingredients
-        self.steps = steps
-        self.image = image
-    }
-
-}
-
-extension Recipe: Equatable {
-
-    static func == (lhs: Recipe, rhs: Recipe) -> Bool {
-        return lhs.name == rhs.name && lhs.time == rhs.time && lhs.ingredients == rhs.ingredients
-            && lhs.steps == rhs.steps && lhs.image == rhs.image && lhs.rating == rhs.rating
+    func getImage() -> UIImage? {
+        guard let data = imageData else {
+            return nil
+        }
+        return UIImage(data: data)
     }
 
 }

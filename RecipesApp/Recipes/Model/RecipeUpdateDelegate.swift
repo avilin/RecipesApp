@@ -1,20 +1,16 @@
 //
-//  RecipesView.swift
+//  RecipeListUpdateDelegate.swift
 //  RecipesApp
 //
-//  Created by Andrés Vicente Linares on 19/2/17.
+//  Created by Andrés Vicente Linares on 21/4/17.
 //  Copyright © 2017 Andrés Vicente Linares. All rights reserved.
 //
 
 import Foundation
 
-protocol RecipesView: NSObjectProtocol {
+protocol RecipeUpdateDelegate: NSObjectProtocol {
 
-    func reloadData()
-
-    func share(data: [Any])
-
-    func beginTableUpdates()
+    func beginUpdates()
 
     func insertRecipe(at indexPath: IndexPath)
 
@@ -24,6 +20,8 @@ protocol RecipesView: NSObjectProtocol {
 
     func moveRecipe(at indexPath: IndexPath, to newIndexPath: IndexPath)
 
-    func endTableUpdates()
+    func assign(recipes: [Recipe])
+
+    func endUpdates()
 
 }

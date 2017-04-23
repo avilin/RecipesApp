@@ -99,8 +99,7 @@ class CreateRecipePresenter {
     }
 
     func saveRecipe() {
-        let recipe = Recipe(name: name, time: time, ingredients: ingredients, steps: steps, image: #imageLiteral(resourceName: "placeholder_image"))
-        recipeDAO.save(recipe: recipe)
+        recipeDAO.saveRecipeWith(name: name, time: time, ingredients: ingredients, steps: steps, imageData: nil)
         createRecipeView?.onSave()
     }
 
