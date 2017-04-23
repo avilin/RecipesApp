@@ -33,6 +33,14 @@ class CreateRecipeViewController: UIViewController {
 
     // MARK: - IBActions
     @IBAction func selectImageButtonTouched(_ sender: UIButton) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.allowsEditing = false
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.delegate = self
+
+            present(imagePicker, animated: true)
+        }
     }
 
     @IBAction func textFieldEditingChanged(_ sender: UITextField) {
@@ -102,6 +110,23 @@ extension CreateRecipeViewController: CreateRecipeView {
     func onSave() {
         navigationController?.popViewController(animated: true)
     }
+
+}
+
+// MARK: - UIImagePickerControllerDelegate
+extension CreateRecipeViewController: UIImagePickerControllerDelegate {
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        imageView.contentMode = .scaleAspectFill
+
+        dismiss(animated: true)
+    }
+    
+}
+
+// MARK: - UINavigationControllerDelegate
+extension CreateRecipeViewController: UINavigationControllerDelegate {
 
 }
 
