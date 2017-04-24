@@ -1,2 +1,2 @@
 # RecipesApp
-Recipe List Project for applying knowledge and learning new Frameworks.
+This is a pet project whose main goal is to use segues and CoreData.
