@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  RecipesApp
+
+  Created by Andrés Vicente Linares on 23/4/17.
+  Copyright © 2017 Andrés Vicente Linares. All rights reserved.
+*/
+
+"NSPhotoLibraryUsageDescription" = "Necesitamos acceder a tu librería para seleccionar una imagen para la receta.";

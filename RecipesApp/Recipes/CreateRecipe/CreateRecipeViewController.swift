@@ -20,6 +20,7 @@ class CreateRecipeViewController: UIViewController {
     // MARK: - Properties
     var createRecipePresenter: CreateRecipePresenter!
     var keyboardHelper: KeyboardHelper?
+    var imageSelected = false
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -95,7 +96,8 @@ class CreateRecipeViewController: UIViewController {
     }
 
     @IBAction func saveButtonTouched(_ sender: UIBarButtonItem) {
-        createRecipePresenter.saveRecipe()
+        var image = imageSelected ? imageView.image : nil
+        createRecipePresenter.saveRecipe(name: nameTextField.text!, time: timeTextField.text!, image: image)
     }
 
 }
@@ -119,10 +121,11 @@ extension CreateRecipeViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         imageView.contentMode = .scaleAspectFill
+        imageSelected = true
 
         dismiss(animated: true)
     }
-    
+
 }
 
 // MARK: - UINavigationControllerDelegate

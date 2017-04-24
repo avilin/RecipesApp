@@ -74,12 +74,7 @@ class CreateRecipePresenter {
 
     // MARK: - Custom functions
     func validateRecipe(name: String, time: String) -> Bool {
-        guard let time = Int(time) else {
-            return false
-        }
-        self.name = name
-        self.time = time
-        return true
+        return Int(time) != nil
     }
 
     func addIngredient(_ ingredient: String) {
@@ -98,8 +93,14 @@ class CreateRecipePresenter {
         }
     }
 
-    func saveRecipe() {
-        recipeDAO.saveRecipeWith(name: name, time: time, ingredients: ingredients, steps: steps, imageData: nil)
+    func saveRecipe(name: String, time: String, image: UIImage?) {
+        var imageData: Data? = nil
+        if let image = image {
+            imageData = UIImagePNGRepresentation(image)
+        }
+
+        recipeDAO.saveRecipeWith(name: name, time: Int(time) ?? 0, ingredients: ingredients, steps: steps,
+                                 imageData: imageData)
         createRecipeView?.onSave()
     }
 
