@@ -8,22 +8,38 @@
 
 import UIKit
 
-class CreateRecipePresenter {
+class EditRecipePresenter {
 
     // MARK: - Properties
     private let recipeDAO: RecipeDAO
-    weak private var createRecipeView: CreateRecipeView?
+    private let recipe: Recipe
+    weak private var editRecipeView: EditRecipeView?
 
     var ingredients: [String] = []
     var steps: [String] = []
 
     // MARK: - Initialization
-    init(recipeDAO: RecipeDAO) {
+    init(recipeDAO: RecipeDAO, recipe: Recipe) {
         self.recipeDAO = recipeDAO
+        self.recipe = recipe
     }
 
-    func attachView(createRecipeView: CreateRecipeView) {
-        self.createRecipeView = createRecipeView
+    func attachView(editRecipeView: EditRecipeView) {
+        self.editRecipeView = editRecipeView
+    }
+
+    func initView() {
+        ingredients = recipe.ingredients
+        steps = recipe.steps
+
+        editRecipeView?.setRecipeName(recipe.name)
+        editRecipeView?.setRecipeTime(String(recipe.time))
+
+        if let image = recipe.getImage() {
+            editRecipeView?.setRecipeImage(image)
+        } else {
+            editRecipeView?.setPlaceholderImage()
+        }
     }
 
     // MARK: - TableView Configuration
@@ -79,7 +95,7 @@ class CreateRecipePresenter {
         if !ingredient.isEmpty {
             ingredients.append(ingredient)
             let indexPath = IndexPath(row: ingredients.count - 1, section: 0)
-            createRecipeView?.insertRow(at: indexPath)
+            editRecipeView?.insertRow(at: indexPath)
         }
     }
 
@@ -87,7 +103,7 @@ class CreateRecipePresenter {
         if !step.isEmpty {
             steps.append(step)
             let indexPath = IndexPath(row: steps.count - 1, section: 1)
-            createRecipeView?.insertRow(at: indexPath)
+            editRecipeView?.insertRow(at: indexPath)
         }
     }
 
@@ -96,27 +112,32 @@ class CreateRecipePresenter {
         case 0:
             if !ingredients.isEmpty {
                 ingredients.remove(at: indexPath.row)
-                createRecipeView?.deleteRow(at: indexPath)
+                editRecipeView?.deleteRow(at: indexPath)
             }
         case 1:
             if !steps.isEmpty {
                 steps.remove(at: indexPath.row)
-                createRecipeView?.deleteRow(at: indexPath)
+                editRecipeView?.deleteRow(at: indexPath)
             }
         default:
             break
         }
     }
 
-    func saveRecipe(name: String, time: String, image: UIImage?) {
+    func updateRecipe(name: String, time: String, image: UIImage?) {
         var imageData: Data? = nil
         if let image = image {
             imageData = UIImagePNGRepresentation(image)
         }
 
-        recipeDAO.saveRecipeWith(name: name, time: Int(time) ?? 0, ingredients: ingredients, steps: steps,
-                                 imageData: imageData)
-        createRecipeView?.onSave()
+        recipe.name = name
+        recipe.time = Int64(time) ?? recipe.time
+        recipe.ingredients = ingredients
+        recipe.steps = steps
+        recipe.imageData = imageData ?? recipe.imageData
+
+        recipeDAO.update()
+        editRecipeView?.onSave()
     }
 
 }

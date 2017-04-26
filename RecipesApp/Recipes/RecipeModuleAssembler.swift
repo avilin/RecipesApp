@@ -37,4 +37,9 @@ class RecipeSceneAssembler {
         createRecipeViewController.createRecipePresenter = createRecipePresenter
     }
 
+    func assembleEditRecipeSceneWith(view editRecipeViewController: EditRecipeViewController, recipe: Recipe) {
+        let editRecipePresenter = EditRecipePresenter(recipeDAO: recipeDAO, recipe: recipe)
+        editRecipeViewController.editRecipePresenter = editRecipePresenter
+    }
+
 }

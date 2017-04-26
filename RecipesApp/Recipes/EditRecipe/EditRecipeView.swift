@@ -8,7 +8,15 @@
 
 import UIKit
 
-protocol CreateRecipeView: NSObjectProtocol {
+protocol EditRecipeView: NSObjectProtocol {
+
+    func setRecipeName(_ name: String)
+
+    func setRecipeTime(_ time: String)
+
+    func setRecipeImage(_ image: UIImage)
+
+    func setPlaceholderImage()
 
     func insertRow(at indexPath: IndexPath)
 

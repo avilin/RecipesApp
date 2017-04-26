@@ -98,4 +98,8 @@ class RecipeDetailPresenter {
         recipeSceneAssembler.assembleRatingSceneWith(view: view, rating: rating)
     }
 
+    func configure(view: EditRecipeViewController) {
+        recipeSceneAssembler.assembleEditRecipeSceneWith(view: view, recipe: recipe)
+    }
+
 }

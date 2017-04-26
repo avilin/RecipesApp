@@ -15,6 +15,7 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var ratingView: CosmosView!
+    @IBOutlet weak var tableView: UITableView!
 
     // MARK: - Constants
     static let cellID = "BasicCell"
@@ -30,10 +31,20 @@ class RecipeDetailViewController: UIViewController {
         recipeDetailPresenter.initView()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        recipeDetailPresenter.initView()
+        tableView.reloadData()
+    }
+
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let ratingViewController = segue.destination as? RatingViewController {
+        if segue.identifier == "showRating", let ratingViewController = segue.destination as? RatingViewController {
             recipeDetailPresenter.configure(view: ratingViewController)
+        } else if segue.identifier == "showEditRecipe",
+            let editRecipeViewController = segue.destination as? EditRecipeViewController {
+            recipeDetailPresenter.configure(view: editRecipeViewController)
         }
     }
 

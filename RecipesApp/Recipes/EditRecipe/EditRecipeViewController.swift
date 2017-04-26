@@ -1,14 +1,14 @@
 //
-//  CreateRecipeViewController.swift
+//  EditRecipeViewController.swift
 //  RecipesApp
 //
-//  Created by Andrés Vicente Linares on 18/3/17.
+//  Created by Andrés Vicente Linares on 25/4/17.
 //  Copyright © 2017 Andrés Vicente Linares. All rights reserved.
 //
 
 import UIKit
 
-class CreateRecipeViewController: UIViewController {
+class EditRecipeViewController: UIViewController {
 
     // MARK: - IBOutlets
     @IBOutlet weak var imageView: UIImageView!
@@ -18,7 +18,7 @@ class CreateRecipeViewController: UIViewController {
     @IBOutlet weak var saveButton: UIBarButtonItem!
 
     // MARK: - Properties
-    var createRecipePresenter: CreateRecipePresenter!
+    var editRecipePresenter: EditRecipePresenter!
     var keyboardHelper: KeyboardHelper?
     var imageSelected = false
 
@@ -26,7 +26,8 @@ class CreateRecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        createRecipePresenter.attachView(createRecipeView: self)
+        editRecipePresenter.attachView(editRecipeView: self)
+        editRecipePresenter.initView()
 
         keyboardHelper = KeyboardHelper()
         keyboardHelper?.configure(viewController: self)
@@ -47,7 +48,7 @@ class CreateRecipeViewController: UIViewController {
     @IBAction func textFieldEditingChanged(_ sender: UITextField) {
         if let name = nameTextField.text, let time = timeTextField.text,
             !name.isEmpty && !time.isEmpty {
-            saveButton.isEnabled = createRecipePresenter.validateRecipe(name: name, time: time)
+            saveButton.isEnabled = editRecipePresenter.validateRecipe(name: name, time: time)
         } else {
             saveButton.isEnabled = false
         }
@@ -67,7 +68,7 @@ class CreateRecipeViewController: UIViewController {
         let addAction = UIAlertAction(title: "Add".localized(), style: .default) { (_) in
             let textField = alertController.textFields![0] as UITextField
             let text = textField.text
-            self.createRecipePresenter.addIngredient(text ?? "")
+            self.editRecipePresenter.addIngredient(text ?? "")
         }
         alertController.addAction(addAction)
 
@@ -88,7 +89,7 @@ class CreateRecipeViewController: UIViewController {
         let addAction = UIAlertAction(title: "Add".localized(), style: .default) { (_) in
             let textField = alertController.textFields![0] as UITextField
             let text = textField.text
-            self.createRecipePresenter.addStep(text ?? "")
+            self.editRecipePresenter.addStep(text ?? "")
         }
         alertController.addAction(addAction)
 
@@ -97,13 +98,31 @@ class CreateRecipeViewController: UIViewController {
 
     @IBAction func saveButtonTouched(_ sender: UIBarButtonItem) {
         let image = imageSelected ? imageView.image : nil
-        createRecipePresenter.saveRecipe(name: nameTextField.text!, time: timeTextField.text!, image: image)
+        editRecipePresenter.updateRecipe(name: nameTextField.text!, time: timeTextField.text!, image: image)
     }
 
 }
 
-// MARK: - CreateRecipeView
-extension CreateRecipeViewController: CreateRecipeView {
+// MARK: - EditRecipeView
+extension EditRecipeViewController: EditRecipeView {
+
+    func setRecipeName(_ name: String) {
+        nameTextField.text = name
+    }
+
+    func setRecipeTime(_ time: String) {
+        timeTextField.text = time
+    }
+
+    func setRecipeImage(_ image: UIImage) {
+        imageView.image = image
+        imageView.contentMode = .scaleAspectFill
+    }
+
+    func setPlaceholderImage() {
+        imageView.image = #imageLiteral(resourceName: "placeholder_image")
+        imageView.contentMode = .scaleAspectFit
+    }
 
     func insertRow(at indexPath: IndexPath) {
         tableView.insertRows(at: [indexPath], with: .automatic)
@@ -120,7 +139,7 @@ extension CreateRecipeViewController: CreateRecipeView {
 }
 
 // MARK: - UIImagePickerControllerDelegate
-extension CreateRecipeViewController: UIImagePickerControllerDelegate {
+extension EditRecipeViewController: UIImagePickerControllerDelegate {
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
@@ -133,12 +152,12 @@ extension CreateRecipeViewController: UIImagePickerControllerDelegate {
 }
 
 // MARK: - UINavigationControllerDelegate
-extension CreateRecipeViewController: UINavigationControllerDelegate {
+extension EditRecipeViewController: UINavigationControllerDelegate {
 
 }
 
 // MARK: - UITextFieldDelegate
-extension CreateRecipeViewController: UITextFieldDelegate {
+extension EditRecipeViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -153,30 +172,30 @@ extension CreateRecipeViewController: UITextFieldDelegate {
 }
 
 // MARK: - UITableViewDataSource
-extension CreateRecipeViewController: UITableViewDataSource {
+extension EditRecipeViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return createRecipePresenter.numberOfSections()
+        return editRecipePresenter.numberOfSections()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return createRecipePresenter.numberOfRows(inSection: section)
+        return editRecipePresenter.numberOfRows(inSection: section)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RecipeDetailViewController.cellID, for: indexPath)
-        cell.textLabel?.text = createRecipePresenter.textForCell(at: indexPath)
+        cell.textLabel?.text = editRecipePresenter.textForCell(at: indexPath)
         return cell
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return createRecipePresenter.titleForHeader(atSection: section)
+        return editRecipePresenter.titleForHeader(atSection: section)
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle,
                    forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            createRecipePresenter.deleteElement(at: indexPath)
+            editRecipePresenter.deleteElement(at: indexPath)
         }
     }
 
