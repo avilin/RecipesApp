@@ -70,7 +70,7 @@ class RecipeDetailPresenter {
         var text = ""
         switch indexPath.section {
         case 0:
-            text = recipe.ingredients[indexPath.row]
+            text = recipe.ingredientsArray()[indexPath.row].name
         case 1:
             text = recipe.steps[indexPath.row]
         default:

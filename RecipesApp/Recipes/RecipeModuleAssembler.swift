@@ -13,7 +13,8 @@ class RecipeSceneAssembler {
     private let recipeDAO: RecipeDAO
 
     init(coreDataManager: CoreDataManager) {
-        recipeDAO = RecipeCoreDataDAO(coreDataManager: coreDataManager)
+        recipeDAO = RecipeCoreDataDAO(coreDataManager: coreDataManager,
+                        modelFactory: ModelFactory(context: coreDataManager.persistentContainer.viewContext))
     }
 
     func assembleRecipesScene(withView recipesViewController: RecipesViewController) {

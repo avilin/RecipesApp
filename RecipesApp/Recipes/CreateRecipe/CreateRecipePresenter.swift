@@ -14,7 +14,7 @@ class CreateRecipePresenter {
     private let recipeDAO: RecipeDAO
     weak private var createRecipeView: CreateRecipeView?
 
-    var ingredients: [String] = []
+    var ingredients: [Ingredient] = []
     var steps: [String] = []
 
     // MARK: - Initialization
@@ -48,7 +48,7 @@ class CreateRecipePresenter {
         var text = ""
         switch indexPath.section {
         case 0:
-            text = ingredients[indexPath.row]
+            text = ingredients[indexPath.row].name
         case 1:
             text = steps[indexPath.row]
         default:
@@ -75,8 +75,9 @@ class CreateRecipePresenter {
         return Int(time) != nil
     }
 
-    func addIngredient(_ ingredient: String) {
-        if !ingredient.isEmpty {
+    func addIngredient(_ ingredientName: String) {
+        if !ingredientName.isEmpty {
+            let ingredient = recipeDAO.modelFactory.makeIngredient(name: ingredientName)
             ingredients.append(ingredient)
             let indexPath = IndexPath(row: ingredients.count - 1, section: 0)
             createRecipeView?.insertRow(at: indexPath)
@@ -114,8 +115,13 @@ class CreateRecipePresenter {
             imageData = UIImagePNGRepresentation(image)
         }
 
-        recipeDAO.saveRecipeWith(name: name, time: Int(time) ?? 0, ingredients: ingredients, steps: steps,
-                                 imageData: imageData)
+        for ingredient in ingredients {
+            recipeDAO.save(ingredient: ingredient)
+        }
+
+        let recipe = recipeDAO.modelFactory.makeRecipe(name: name, time: Int64(time) ?? 0, ingredients: ingredients,
+                                                       steps: steps, imageData: imageData)
+        recipeDAO.save(recipe: recipe)
         createRecipeView?.onSave()
     }
 

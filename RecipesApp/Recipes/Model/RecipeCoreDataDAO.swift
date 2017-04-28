@@ -15,8 +15,11 @@ class RecipeCoreDataDAO: NSObject {
     var fetchResultsController: NSFetchedResultsController<Recipe>!
     weak var recipeUpdateDelegate: RecipeUpdateDelegate?
 
-    init(coreDataManager: CoreDataManager) {
+    let modelFactory: ModelFactory
+
+    init(coreDataManager: CoreDataManager, modelFactory: ModelFactory) {
         self.coreDataManager = coreDataManager
+        self.modelFactory = modelFactory
     }
 
 }
@@ -48,18 +51,17 @@ extension RecipeCoreDataDAO: RecipeDAO {
         recipeUpdateDelegate?.assign(recipes: recipes)
     }
 
-    func saveRecipeWith(name: String, time: Int, ingredients: [String], steps: [String], imageData: Data?) {
+    func save(recipe: Recipe) {
         let context = coreDataManager.persistentContainer.viewContext
-        guard let insertedRecipe = NSEntityDescription.insertNewObject(forEntityName: "Recipe", into: context)
-            as? Recipe else {
-                fatalError()
-        }
-        insertedRecipe.name = name
-        insertedRecipe.time = Int64(time)
-        insertedRecipe.ingredients = ingredients
-        insertedRecipe.steps = steps
-        insertedRecipe.imageData = imageData
+        context.insert(recipe)
+        coreDataManager.saveContext()
+    }
 
+    func save(ingredient: Ingredient) {
+        let context = coreDataManager.persistentContainer.viewContext
+        if ingredient.managedObjectContext == nil {
+            context.insert(ingredient)
+        }
         coreDataManager.saveContext()
     }
 
@@ -70,6 +72,12 @@ extension RecipeCoreDataDAO: RecipeDAO {
     func remove(recipe: Recipe) {
         let context = coreDataManager.persistentContainer.viewContext
         context.delete(recipe)
+        coreDataManager.saveContext()
+    }
+
+    func remove(ingredient: Ingredient) {
+        let context = coreDataManager.persistentContainer.viewContext
+        context.delete(ingredient)
         coreDataManager.saveContext()
     }
 

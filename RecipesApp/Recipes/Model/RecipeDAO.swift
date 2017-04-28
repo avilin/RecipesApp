@@ -10,14 +10,20 @@ import Foundation
 
 protocol RecipeDAO {
 
+    var modelFactory: ModelFactory { get }
+
     func configure(with recipeUpdateDelegate: RecipeUpdateDelegate)
 
     func findAll()
 
-    func saveRecipeWith(name: String, time: Int, ingredients: [String], steps: [String], imageData: Data?)
+    func save(recipe: Recipe)
+
+    func save(ingredient: Ingredient)
 
     func update()
 
     func remove(recipe: Recipe)
+
+    func remove(ingredient: Ingredient)
 
 }

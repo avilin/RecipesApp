@@ -15,7 +15,7 @@ class EditRecipePresenter {
     private let recipe: Recipe
     weak private var editRecipeView: EditRecipeView?
 
-    var ingredients: [String] = []
+    var ingredients: [Ingredient] = []
     var steps: [String] = []
 
     // MARK: - Initialization
@@ -29,7 +29,7 @@ class EditRecipePresenter {
     }
 
     func initView() {
-        ingredients = recipe.ingredients
+        ingredients = recipe.ingredientsArray()
         steps = recipe.steps
 
         editRecipeView?.setRecipeName(recipe.name)
@@ -64,7 +64,7 @@ class EditRecipePresenter {
         var text = ""
         switch indexPath.section {
         case 0:
-            text = ingredients[indexPath.row]
+            text = ingredients[indexPath.row].name
         case 1:
             text = steps[indexPath.row]
         default:
@@ -91,8 +91,9 @@ class EditRecipePresenter {
         return Int(time) != nil
     }
 
-    func addIngredient(_ ingredient: String) {
-        if !ingredient.isEmpty {
+    func addIngredient(_ ingredientName: String) {
+        if !ingredientName.isEmpty {
+            let ingredient = recipeDAO.modelFactory.makeIngredient(name: ingredientName)
             ingredients.append(ingredient)
             let indexPath = IndexPath(row: ingredients.count - 1, section: 0)
             editRecipeView?.insertRow(at: indexPath)
@@ -130,9 +131,21 @@ class EditRecipePresenter {
             imageData = UIImagePNGRepresentation(image)
         }
 
+        for ingredient in ingredients {
+            recipeDAO.save(ingredient: ingredient)
+        }
+
+        if let ingredientsArray = recipe.ingredients.array as? [Ingredient] {
+            for ingredient in ingredientsArray {
+                if !ingredients.contains(ingredient) {
+                    recipeDAO.remove(ingredient: ingredient)
+                }
+            }
+        }
+
         recipe.name = name
         recipe.time = Int64(time) ?? recipe.time
-        recipe.ingredients = ingredients
+        recipe.ingredients = NSOrderedSet(array: ingredients)
         recipe.steps = steps
         recipe.imageData = imageData ?? recipe.imageData
 
