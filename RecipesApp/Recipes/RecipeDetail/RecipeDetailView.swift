@@ -20,4 +20,6 @@ protocol RecipeDetailView: NSObjectProtocol {
 
     func setRecipeRating(_ rating: Double)
 
+    func reloadRow(at indexPath: IndexPath)
+
 }

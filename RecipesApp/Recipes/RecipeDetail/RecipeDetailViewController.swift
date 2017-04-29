@@ -85,6 +85,11 @@ extension RecipeDetailViewController: RecipeDetailView {
         ratingView.rating = rating
     }
 
+    func reloadRow(at indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+
 }
 
 // MARK: - UITableViewDataSource
@@ -101,11 +106,21 @@ extension RecipeDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RecipeDetailViewController.cellID, for: indexPath)
         cell.textLabel?.text = recipeDetailPresenter.textForCell(at: indexPath)
+        cell.accessoryType = recipeDetailPresenter.isValueChecked(at: indexPath) ? .checkmark : .none
         return cell
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return recipeDetailPresenter.titleForHeader(atSection: section)
+    }
+
+}
+
+// MARK: - UITableViewDelegate
+extension RecipeDetailViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        recipeDetailPresenter.selectRow(at: indexPath)
     }
 
 }

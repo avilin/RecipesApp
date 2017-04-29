@@ -79,6 +79,13 @@ class RecipeDetailPresenter {
         return text
     }
 
+    func isValueChecked(at indexPath: IndexPath) -> Bool {
+        if indexPath.section == 0, let ingredient = recipe.ingredients.object(at: indexPath.row) as? Ingredient {
+            return ingredient.checked
+        }
+        return false
+    }
+
     func titleForHeader(atSection section: Int) -> String {
         var title = ""
         switch section {
@@ -90,6 +97,15 @@ class RecipeDetailPresenter {
             break
         }
         return title
+    }
+
+    // MARK: - TableView Actions
+    func selectRow(at indexPath: IndexPath) {
+        if indexPath.section == 0, let ingredient = recipe.ingredients.object(at: indexPath.row) as? Ingredient {
+            ingredient.checked = !ingredient.checked
+            recipeDAO.update()
+            recipeDetailView?.reloadRow(at: indexPath)
+        }
     }
 
     // MARK: - Navigation Configuration
